@@ -1,15 +1,12 @@
 import React from "react";
-import "./app.css";
-import Header from "./components/header/header";
-import Footer from "./components/footer/footer";
+import styles from "./app.module.css";
+
 import Login from "./components/login/login";
 
-const App = () => {
+const App = ({ authService }) => {
   return (
-    <div className="App">
-      <Header />
-      <Login />
-      <Footer />
+    <div className={styles.app}>
+       <Login authService={authService} />
     </div>
   );
 };
