@@ -1,12 +1,13 @@
 import React from 'react';
 import Login from 'components/login/login';
+import styles from './editor.module.css';
 
 const Editor = (props) => {
     return (
-        <div>
-       <h1>Card Editor</h1>    
+        <section className={styles.editor}>
+       <h1 className={styles.title}>Card Maker</h1>    
       
-       </div>
+       </section>
     );
     };
 export default Editor;

@@ -7,7 +7,7 @@ import Editor from "components/editor/editor";
 import Preview from "components/preview/preview";
 const Main = ({ authService }) => {
   const history = new useHistory();
-  
+
   const onLogout = () => {
     authService.logout();
   };
@@ -24,9 +24,8 @@ const Main = ({ authService }) => {
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        
-      <div className={styles.editor}><Editor/></div>
-      <div className={styles.preview}><Preview /></div>
+        <Editor />
+        <Preview />
       </div>
       <Footer />
     </section>
