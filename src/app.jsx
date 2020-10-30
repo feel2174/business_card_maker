@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./components/login/login";
 import Main from "components/main/main";
 
-const App = ({ authService }) => {
+const App = ({ FileInput, authService }) => {
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -15,7 +15,7 @@ const App = ({ authService }) => {
           </Route>
 
           <Route path="/main">
-            <Main authService={authService} />
+            <Main FileInput={FileInput} authService={authService} />
           </Route>
         </Switch>
       </BrowserRouter>
