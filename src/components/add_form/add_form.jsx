@@ -67,7 +67,6 @@ const AddForm = ({  FileInput, onAdd }) => {
         ref={themeRef}
         className={styles.select}
         name="theme"
-        value="default"
       >
         <option>light</option>
         <option>dark</option>
@@ -93,7 +92,7 @@ const AddForm = ({  FileInput, onAdd }) => {
         name="message"
       ></textarea>
       <div className={styles.fileInput}>
-       <FileInput onFileChange={onFileChange}/>
+       <FileInput name={file.fileName} onFileChange={onFileChange}/>
       </div>
       <Button name="Add" onClick={onSubmit} />
     </form>

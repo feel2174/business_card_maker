@@ -6,7 +6,11 @@ import { useHistory } from "react-router-dom";
 import Editor from "components/editor/editor";
 import Preview from "components/preview/preview";
 
-const Main = ({ FileInput, authService }) => {
+const Main = ({ FileInput, authService, cardRepository }) => {
+  const historyState = useHistory().state;
+  const [cards, setCards] = useState({});
+  const [userId, setUserId] = useState(historyState && historyState.id);
+
   const history = new useHistory();
 
   const onLogout = () => {
@@ -14,12 +18,25 @@ const Main = ({ FileInput, authService }) => {
   };
 
   useEffect(() => {
+    if(!userId) {
+      return;
+    } 
+    const stopSync = cardRepository.syncCards(userId, cards => {
+      setCards(cards);
+    })
+    return () => stopSync();
+    
+  }, [userId, cardRepository])
+
+  useEffect(() => {
     authService.onAuthChange((user) => {
-      if (!user) {
+      if (user) {
+        setUserId(user.uid);
+      } else {
         history.push("/");
       }
     });
-  });
+  }, [authService, userId, history]);
 
   const deleteCard = (card) => {
     setCards((cards) => {
@@ -27,6 +44,7 @@ const Main = ({ FileInput, authService }) => {
       delete updated[card.id];
       return updated;
     });
+    cardRepository.removeCard(userId, card);
   };
 
   const createOrUpdateCard = (card) => {
@@ -35,43 +53,8 @@ const Main = ({ FileInput, authService }) => {
       updated[card.id] = card;
       return updated;
     });
+    cardRepository.saveCard(userId, card);
   };
-
-  const [cards, setCards] = useState({
-    1: {
-      id: 1,
-      name: "velopert",
-      company: "Samsung",
-      theme: "light",
-      title: "Software Engineer",
-      email: "public.velopert@gmail.com",
-      message: "go for it",
-      fileName: "ellie",
-      fileURL: null,
-    },
-    2: {
-      id: 2,
-      name: "zucca",
-      company: "Hyundai",
-      theme: "dark",
-      title: "Frontend Engineer",
-      email: "private@gmail.com",
-      message: "come for it",
-      fileName: "zucca",
-      fileURL: null,
-    },
-    3: {
-      id: 3,
-      name: "dev",
-      company: "LG",
-      theme: "light",
-      title: "Backend Engineer",
-      email: "devzucca@gmail.com",
-      message: "stay for it",
-      fileName: "dev",
-      fileURL: null,
-    },
-  });
 
   return (
     <section className={styles.maker}>

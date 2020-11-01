@@ -38,7 +38,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
 
     updateCard({
       ...card,
-      [e.currentTarget.name]: [e.currentTarget.value],
+      [e.currentTarget.name]: e.currentTarget.value,
     });
   };
 
@@ -66,7 +66,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
       />
       <select
         className={styles.select}
-        name="them"
+        name="theme"
         value={theme}
         ref={themeRef}
         onChange={onChange}
@@ -99,7 +99,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         onChange={onChange}
       ></textarea>
       <div className={styles.fileInput}>
-        <FileInput name={card.name} onFileChange={onFileChange} />
+        <FileInput name={fileName} onFileChange={onFileChange} />
       </div>
       <Button name="Delete" onClick={onSubmit} />
     </form>
