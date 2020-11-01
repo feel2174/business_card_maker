@@ -1,13 +1,13 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from './footer.module.css'
 
-const Footer = (props) => {
+const Footer = memo(() => {
   return (
-    <div className={styles.footer}>
-      <h1>Code Your Dream</h1>
+    <footer className={styles.footer}>
+      <p className={styles.title}>Code Your Dream</p>
 
-    </div>
+    </footer>
   );
-};
+});
 
 export default Footer;

@@ -1,14 +1,17 @@
-import React from "react";
-import styles from './header.module.css'
+import React, { memo } from "react";
+import styles from "./header.module.css";
 
 
-const Header = (props) => {
+const Header = memo(({ onLogout }) => {
+ console.log('header');
+ 
   return (
-    <div className={styles.header}>
-      <img className={styles.img} src={process.env.PUBLIC_URL + 'images/logo.png'} width="50"height="40" alt="cardImage"/>
-      <h1>Business Card Maker</h1>
-    </div>
+    <header className={styles.header}>{onLogout && <button className={styles.logout} onClick={onLogout}>Logout</button>}
+    <img className={styles.logo} src="/images/logo.png" alt="logo"/>
+    <h1 className={styles.title}>Business Card Maker</h1>
+    
+    </header>
   );
-};
+});
 
 export default Header;

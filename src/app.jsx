@@ -1,15 +1,24 @@
 import React from "react";
-import "./app.css";
-import Header from "./components/header/header";
-import Footer from "./components/footer/footer";
-import Login from "./components/login/login";
+import styles from "./app.module.css";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-const App = () => {
+import Login from "./components/login/login";
+import Main from "components/main/main";
+
+const App = ({ FileInput, authService, cardRepository }) => {
   return (
-    <div className="App">
-      <Header />
-      <Login />
-      <Footer />
+    <div className={styles.app}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path={["/", "home"]}>
+            <Login authService={authService} />
+          </Route>
+
+          <Route path="/main">
+            <Main FileInput={FileInput} authService={authService} cardRepository={cardRepository} />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 };
