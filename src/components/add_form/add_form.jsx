@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, memo } from "react";
 import styles from "./add_form.module.css";
 
 import Button from "components/button/button";
 import { useState } from "react";
 
-const AddForm = ({  FileInput, onAdd }) => {
+const AddForm = memo(({  FileInput, onAdd }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -97,6 +97,6 @@ const AddForm = ({  FileInput, onAdd }) => {
       <Button name="Add" onClick={onSubmit} />
     </form>
   );
-};
+});
 
 export default AddForm;
