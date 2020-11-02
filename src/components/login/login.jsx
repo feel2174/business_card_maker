@@ -14,8 +14,7 @@ const Login = ({ authService }) => {
   }
   
   const onLogin = (event) => {
-    authService //
-    .login(event.currentTarget.textContent)
+    authService.login(event.currentTarget.textContent)
     .then(data => goToMain(data.user.uid));
   };
 

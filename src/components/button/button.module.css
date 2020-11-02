@@ -5,6 +5,7 @@
     color: makerWhite;
     font-weight: bold;
     cursor: pointer;
+    height: 5rem;
     padding: 0.5em;
     flex: 1 1 50%;
     font-size: 0.8rem;    
