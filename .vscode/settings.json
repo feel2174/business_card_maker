@@ -3,6 +3,5 @@
     "titleBar.activeBackground": "#3F708D",
     "titleBar.inactiveBackground": "#3F708D"
   },
-  "explorer.compactFolders": false,
-  "css.lint.unknownAtRules": "ignore"
+  "explorer.compactFolders": false
 }
